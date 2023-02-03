@@ -4,13 +4,31 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+
+	"github.com/joho/godotenv"
 )
 
+func goDotEnvVariable(key string) string {
+
+	// load .env file
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+
+	}
+	return os.Getenv(key)
+}
+
 func main() {
+
+	dotenv := goDotEnvVariable("BEARER_TOKEN")
+
 	url := "https://api.dropboxapi.com/2/team/groups/list"
 
 	// Create a Bearer string by appending string access token
-	var bearer = "Bearer " + "sl.BYLvpogW6WMascdGy5TV2QxND8DZRGSXYx6jXMe7CtIexh73MNw9xGh5jjrhkrCLfjV2dY7TZ8Rvz8zhPZEsHKdv5gyFHvWchalgyaSFM0NsgsGn8splzmm_MZNJGFNI5gSFwtnI2bXO9om5t0hG"
+	var bearer = "Bearer " + dotenv
 
 	// Create a new request using http
 	req, err := http.NewRequest("POST", url, nil)
