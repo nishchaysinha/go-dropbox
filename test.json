@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "group_name": "Everyone in BalkanID",
+      "group_id": "g:5b5b4de65e32bb4c0000000000000004",
+      "group_external_id": "",
+      "member_count": 3,
+      "group_management_type": { ".tag": "system_managed" }
+    },
+    {
+      "group_name": "Devops",
+      "group_id": "g:5b5b4de65e32bb4c0000000000000026",
+      "group_external_id": "",
+      "member_count": 2,
+      "group_management_type": { ".tag": "company_managed" }
+    },
+    {
+      "group_name": "Sales",
+      "group_id": "g:5b5b4de65e32bb4c000000000000002e",
+      "group_external_id": "",
+      "member_count": 3,
+      "group_management_type": { ".tag": "user_managed" }
+    }
+  ],
+  "cursor": "AAB5H76MjQgn-4PAQ6VycIWndoDdENIsI0LsZ4QXbHJ2U7tBSqz0qBnC--PIJ-PfIZr-hjK12iQPyzBSHFbSfCuQ1lpZrtzX5BXsDgJg_l_PugsERSO1AL3u1pbly-npPf4l8SvgMqc03fvUdJbjCQn57CxyQ8_QibE06G3WbeE8qsZxfMAhX79ZC6VYVXKivOlHAiwCDodeqkNreWCtAObiTcuo6gKVz2v-t92Q-hy804OJI19FMwYns67Xubrq_Wnj9cYTBkX-3E-H7ASuk4f7yMMoOiNwP8FQZhkfIlO96A",
+  "has_more": false
+}
+
+curl -X POST https://api.dropboxapi.com/2/team/groups/get_info \
+    --header "Authorization: Bearer sl.BYOz1KaoQbmfueACwxnMlNRM2E7gJUPVxd1hB4dTDqzMP-T0ngEqpPOkYFxvGx8Jlan1OAnHIBJjMS1mzIYSA2-LgZsXOrYEfQ-3UZqOzhnzpYHCLknBz_gaNF0b9glOGPndSWShSDwtjaW_yPRR" \
+    --header "Content-Type: application/json" \
+    --data "{\".tag\":\"group_ids\",\"group_ids\":[\"g:5b5b4de65e32bb4c000000000000002e\",\"5b5b4de65e32bb4c0000000000000026\"]}"
