@@ -44,7 +44,7 @@ func wrapper_emptyBody(token string, method string, endpoint string) {
 
 }
 
-func wrapper_fullBody(token string, method string, endpoint string, reqbody []byte) {
+func wrapper_withBody(token string, method string, endpoint string, reqbody []byte) {
 	var bearer = "Bearer " + token
 
 	base_url := "https://api.dropboxapi.com/2/"
@@ -68,10 +68,18 @@ func wrapper_fullBody(token string, method string, endpoint string, reqbody []by
 
 func main() {
 
-	postBody, _ := json.Marshal(map[string]string{
+	postBody1, _ := json.Marshal(map[string]string{
 		"include_removed": "false",
 		"limit":           "100",
 	})
+
+	postBody2 := []byte(`
+		".tag": "group_ids",
+		"group_ids": [
+			"g:e2db7665347abcd600000000001a2b3c",
+			"g:111111147abcd6000000000222222c"
+		],
+	`)
 
 	dotenv := loadDotenv("BEARER_TOKEN")
 
@@ -79,6 +87,8 @@ func main() {
 	println("\n")
 	wrapper_emptyBody(dotenv, "POST", "team/get_info")
 	println("\n")
-	wrapper_fullBody(dotenv, "POST", "team/members/list_v2", postBody)
+	wrapper_withBody(dotenv, "POST", "team/members/list_v2", postBody1)
+	println("\n")
+	wrapper_withBody(dotenv, "POST", "team/groups/get_info", postBody2)
 
 }
